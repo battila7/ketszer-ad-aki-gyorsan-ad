@@ -1,0 +1,34 @@
+quarkus:
+  datasource:
+    username: postgres
+    password: postgres
+    jdbc:
+      url: jdbc:h2:mem:test
+      driver: org.h2.Driver
+
+  hibernate-orm:
+    database:
+      generation: drop-and-create
+    dialect: org.hibernate.dialect.H2Dialect
+
+  s3:
+    devservices:
+      enabled: true
+      buckets:
+
+  flyway:
+    baseline-on-migrate: true
+
+  jobrunr:
+    background-job-server:
+      enabled: true
+
+  smallrye-openapi:
+    enable: true
+
+codernicus:
+  authentication:
+    jwt:
+      access:
+        public-key: "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv7ZhYVdVZHAAywjoftBaq7KPGAlFQt7YL4hiUARd61WmrKyr0ghj6KOcya2uiVCGvk0ZZmu2I+zPS0QBKvdWlWBTVhPgKwNtcii/MuWPWFk5xTaYfea+29sSGF1eB+CxtC9K4GKHtL6WRSl5QnVMkzNvE7v08aNjy5GWN06Od3EKS58tb9IaXMF0XBd2oywR4zZ3SOZHo6etFvYVT57U+pekfGfyinyh+DQtdmpNpftfxju2LIoA9HWwhKFqBU2I6ZAwY+pexy1MYymteD1mk34y5oRLoSwKoqz4aaQmCZUsB35gI9Nyta1bhbDopkTQg1Rc3B+Q99AX8wlkWzGniQIDAQAB"
+        private-key: "MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC/tmFhV1VkcADLCOh+0Fqrso8YCUVC3tgviGJQBF3rVaasrKvSCGPoo5zJra6JUIa+TRlma7Yj7M9LRAEq91aVYFNWE+ArA21yKL8y5Y9YWTnFNph95r7b2xIYXV4H4LG0L0rgYoe0vpZFKXlCdUyTM28Tu/Txo2PLkZY3To53cQpLny1v0hpcwXRcF3ajLBHjNndI5kejp60W9hVPntT6l6R8Z/KKfKH4NC12ak2l+1/GO7YsigD0dbCEoWoFTYjpkDBj6l7HLUxjKa14PWaTfjLmhEuhLAqirPhppCYJlSwHfmAj03K1rVuFsOimRNCDVFzcH5D30BfzCWRbMaeJAgMBAAECggEAAYEjETO5Ay4dmC8AH9ajy7/X9/q7HYei+sooq9Ffx05aO/X0z7HmsLGsO3v9nLR7mUUt+Nkj5Jihyt9avv3djF8hje9uWNrjgFZAdpCrMz9J4tQhnd2qz4aEo04TFwGPRzSHkXuQsh8td0wvBXsjOitRN+QiAD5/8N4FURxDWojwZ7qWuu/7w4ReDhrJDzQpEr3Qb0sRQghJnjtYTL8o9TUZ+moh0lFF0JJB2lgFJq7IA9Wxvq4myYrSQrtjGPhoXW8sd6+yuJeIEvnAcspVgLJng/v0+Gc4wGoP211OzKyCn6G1oXflRCfDoFnWUvROhQAh/Q5LmmVqx7sqW4wRcQKBgQDCmwSrigCU2xoX+pHX6G9kSsBKYglhKUfdMk0lyx+o0AYtQD+UCyRwaqSKR/kV+O48eL4O4C/WXZAz043Yj+Y4s7hGoplJ5CPj12XqEo0783xhGkMkpxPH0/5UayCLMvl9S1Xntehy/U8QCRrSSfy5W/C2rPJLn9b3g2nzjC0j/QKBgQD8MbReLVFVYjMgAPI6VO+qA3rFx95LgT9HmN71CQanhKKPoeHNc7PVoY2cYcaWZm5S/KU+wX8tsv7iMg6WZ5/c5O/EX/5WPjyy0AQ7pWxS7dKScj6+ng7m5rJ83jk1iWMy3bk4VWHknD5t3QK7z8Wz0+DjOmz6vnHwOZkSZ575fQKBgQCy9nZT/mRMgDW96Xunz6Ro2el+PiwcAyeIftK9t8/UogGcKaKOVbTcAOZyGIAzuan1SKCX84lqnL6ZOqsOhj8U1AnaQ3uunTR4OkUJ/qeNg3xVnB41HcUuFoGkRqQ1/tm7ZMWKghpTbSoBOC5HRy03lRqIFAH6k/LPyjVsePOmTQKBgCnn8Hq9uQghGzG0Novu1SxBC8OVpKCTR3qUMmgxKcPoTELluWm0UiurfqZ/sMoJF0f+5054RLPJTIU1oCrp6SyBdj4BXXfjO57S5gErSca18gmXpklyZjOEHiCVpJf6zlsDcOWlenDMbas/0FZ4/fcVvAbGDJnVz4UFbSQbx9TZAoGAIM4UltB+S8FK48r82NesZzzEu4BMFDRR5B4sBjjCEm3JlVjQ+aji0M/XJjobDjTB3KosJKu4WVqY+ixV4WK92CeJDYoXaCjnbEKtirhTdUup0yxo2GhakZ8sokfGRniFQ1dEvvuoUS8+FF2qNn9Uz0PpVHJaSH8uAkuWqTMkhMU="

@@ -1,0 +1,4 @@
+quarkus:
+  jobrunr:
+    background-job-server:
+      enabled: true
