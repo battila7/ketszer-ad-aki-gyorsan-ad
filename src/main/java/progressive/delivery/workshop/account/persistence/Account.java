@@ -1,21 +1,20 @@
 package progressive.delivery.workshop.account.persistence;
 
+import static java.util.Objects.isNull;
+
 import io.quarkus.elytron.security.common.BcryptUtil;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import io.quarkus.security.jpa.Password;
 import io.quarkus.security.jpa.Roles;
 import io.quarkus.security.jpa.UserDefinition;
 import io.quarkus.security.jpa.Username;
-import lombok.*;
-import org.hibernate.annotations.NaturalId;
-
+import java.util.Objects;
+import java.util.Optional;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import java.util.Objects;
-import java.util.Optional;
-
-import static java.util.Objects.isNull;
+import lombok.*;
+import org.hibernate.annotations.NaturalId;
 
 /**
  * Egy felhasználói hozzáférést reprezentáló adatbázisentitás.
@@ -38,6 +37,11 @@ import static java.util.Objects.isNull;
 @AllArgsConstructor
 public class Account extends PanacheEntity {
     /**
+     * A felhasználókhoz rendelt alapértelmezett szerepkör.
+     */
+    public static final String DEFAULT_ROLE = "user";
+
+    /**
      * A felhasználó egyedi neve az alkalmazáson belül.
      */
     @NaturalId
@@ -45,10 +49,21 @@ public class Account extends PanacheEntity {
     @Column(nullable = false, unique = true)
     String username;
 
+    /**
+     * A felhasználó hashelt jelszava.
+     */
     @Password
     @Column(nullable = false)
     String password;
 
+    /**
+     * A felhasználóhoz rendelt szerepkör.
+     *
+     * <p>
+     * Ezt a Quarkus Security JPA írja elő, mi nem fogjuk használni.
+     *
+     * @see <a href="https://quarkus.io/guides/security-basic-authentication-tutorial">Secure a Quarkus Application</a>
+     */
     @Roles
     String role;
 
@@ -81,7 +96,7 @@ public class Account extends PanacheEntity {
         Account account = Account.builder()
                 .username(username)
                 .password(BcryptUtil.bcryptHash(password))
-                .role("user")
+                .role(DEFAULT_ROLE)
                 .build();
 
         account.persist();
