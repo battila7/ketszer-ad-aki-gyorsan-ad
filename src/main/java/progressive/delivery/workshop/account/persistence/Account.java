@@ -36,10 +36,13 @@ import org.hibernate.annotations.NaturalId;
 @Builder
 @AllArgsConstructor
 public class Account extends PanacheEntity {
-    /**
-     * A felhasználókhoz rendelt alapértelmezett szerepkör.
-     */
-    public static final String DEFAULT_ROLE = "user";
+    public static final class Role {
+        public static final String CUSTOMER = "customer";
+
+        public static final String ADMIN = "admin";
+
+        private Role() {}
+    }
 
     /**
      * A felhasználó egyedi neve az alkalmazáson belül.
@@ -90,13 +93,14 @@ public class Account extends PanacheEntity {
      *
      * @param username a felhasználó neve
      * @param password a felhasználó jelszava
+     * @param role a felhasználóhoz rendelt szerepkör
      * @return a létrehozott felhasználó
      */
-    public static Account add(final String username, final String password) {
+    public static Account add(final String username, final String password, final String role) {
         Account account = Account.builder()
                 .username(username)
                 .password(BcryptUtil.bcryptHash(password))
-                .role(DEFAULT_ROLE)
+                .role(role)
                 .build();
 
         account.persist();

@@ -36,7 +36,7 @@ public class DummyDataLoader {
         Dish.deleteAll();
         Wish.deleteAll();
 
-        final var bob = Account.add("bob", "password");
+        final var bob = Account.add("bob", "password", Account.Role.CUSTOMER);
 
         final var rantottHusok = Category.add("rántott húsok");
 
