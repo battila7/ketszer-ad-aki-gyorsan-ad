@@ -7,6 +7,7 @@ import org.hibernate.annotations.NaturalId;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import java.util.Objects;
+import java.util.Optional;
 
 import static java.util.Objects.isNull;
 
@@ -51,5 +52,15 @@ public class Account extends PanacheEntity {
         }
 
         return Objects.equals(getUsername(), ((Account) obj).getUsername());
+    }
+
+    /**
+     * Megkeresi a megadott névvel rendelkező felhasználót.
+     *
+     * @param username a keresett felhasználó neve
+     * @return a keresett felhasználó, vagy {@code Optinal.empty()}, ha nem található
+     */
+    public static Optional<Account> findByUsernameOptional(final String username) {
+        return find("username", username).firstResultOptional();
     }
 }
