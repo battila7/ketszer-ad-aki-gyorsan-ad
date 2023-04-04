@@ -6,12 +6,20 @@ import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.util.Objects;
 
 import static java.util.Objects.isNull;
 
+/**
+ * Egy felhasználói hozzáférést reprezentáló adatbázisentitás.
+ *
+ * <p>
+ * Minden felhasználó rendelkezik egy mesterséges azonosítóval, melyet DB elsődleges kulcsként használunk,
+ * (surrogate primary key), továbbá egy felhasználónévvel, mely az üzleti szintű azonosítást biztosítja
+ * (business key).
+ *
+ * @see <a href="https://quarkus.io/guides/hibernate-orm-panache">Simplified Hibernate ORM with Panache</a>
+ */
 @Entity
 @ToString
 @NoArgsConstructor
@@ -20,6 +28,9 @@ import static java.util.Objects.isNull;
 @Builder
 @AllArgsConstructor
 public class Account extends PanacheEntity {
+    /**
+     * A felhasználó egyedi neve az alkalmazáson belül.
+     */
     @NaturalId
     @Column(nullable = false, unique = true)
     String username;
@@ -30,7 +41,7 @@ public class Account extends PanacheEntity {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (obj == this) {
             return true;
         }
