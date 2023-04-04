@@ -32,6 +32,7 @@ public class Category extends PanacheEntity {
 
     @ManyToMany(mappedBy = "categories", fetch = FetchType.LAZY)
     @ToString.Exclude
+    @Builder.Default
     Set<Dish> dishes = new HashSet<>();
 
     @Override
@@ -45,5 +46,15 @@ public class Category extends PanacheEntity {
         }
 
         return Objects.equals(getName(), ((Category) obj).getName());
+    }
+
+    public static Category add(final String name) {
+        final var category = Category.builder()
+                .name(name)
+                .build();
+
+        category.persist();
+
+        return category;
     }
 }

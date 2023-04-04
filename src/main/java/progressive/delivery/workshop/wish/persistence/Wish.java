@@ -39,6 +39,7 @@ public class Wish extends PanacheEntity {
             inverseJoinColumns = @JoinColumn(name = "dish_id")
     )
     @ToString.Exclude
+    @Builder.Default
     Set<Dish> dishes = new HashSet<>();
 
     public void addDish(final Dish dish) {

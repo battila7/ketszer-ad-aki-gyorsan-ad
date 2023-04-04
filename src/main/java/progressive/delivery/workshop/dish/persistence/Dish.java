@@ -34,6 +34,7 @@ public class Dish extends PanacheEntity {
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     @ToString.Exclude
+    @Builder.Default
     Set<Category> categories = new HashSet<>();
 
     public void addCategory(final Category category) {
