@@ -7,6 +7,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import progressive.delivery.workshop.account.persistence.Account;
 import progressive.delivery.workshop.wish.persistence.Wish;
@@ -23,6 +24,7 @@ public class InefficientFavoriteDish implements FavoriteDish {
     Mapper mapper;
 
     @Override
+    @Transactional
     public Optional<Dish> ofAccount(String name) {
         log.info("Computing favorite dish of account {}", name);
 

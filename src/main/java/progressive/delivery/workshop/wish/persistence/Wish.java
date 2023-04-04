@@ -3,10 +3,7 @@ package progressive.delivery.workshop.wish.persistence;
 import static java.util.Objects.isNull;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Stream;
 import javax.persistence.*;
 import lombok.*;

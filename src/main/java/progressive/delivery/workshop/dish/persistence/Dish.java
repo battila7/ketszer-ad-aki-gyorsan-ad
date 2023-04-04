@@ -3,9 +3,12 @@ package progressive.delivery.workshop.dish.persistence;
 import static java.util.Objects.isNull;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import io.quarkus.panache.common.Parameters;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Stream;
 import javax.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.NaturalId;
@@ -84,5 +87,9 @@ public class Dish extends PanacheEntity {
         dish.persist();
 
         return dish;
+    }
+
+    public static Stream<Dish> streamAllWithName(final Collection<String> names) {
+        return find("name in :names", Parameters.with("names", names)).stream();
     }
 }
