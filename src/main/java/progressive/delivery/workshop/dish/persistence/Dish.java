@@ -4,10 +4,7 @@ import static java.util.Objects.isNull;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import io.quarkus.panache.common.Parameters;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Stream;
 import javax.persistence.*;
 import lombok.*;
@@ -89,7 +86,15 @@ public class Dish extends PanacheEntity {
         return dish;
     }
 
+    public static Optional<Dish> findByNameOptional(final String name) {
+        return find("name", name).firstResultOptional();
+    }
+
     public static Stream<Dish> streamAllWithName(final Collection<String> names) {
-        return find("name in :names", Parameters.with("names", names)).stream();
+        return stream("name in :names", Parameters.with("names", names));
+    }
+
+    public static Stream<Dish> streamAllInCategory(final Collection<Category> categories) {
+        return stream("category in :categories", Parameters.with("categories", categories));
     }
 }
