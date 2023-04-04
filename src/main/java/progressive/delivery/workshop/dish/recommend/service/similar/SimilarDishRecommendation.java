@@ -8,17 +8,14 @@ import lombok.extern.slf4j.Slf4j;
 import progressive.delivery.workshop.dish.favorite.service.FavoriteDish;
 import progressive.delivery.workshop.dish.persistence.Dish;
 import progressive.delivery.workshop.dish.recommend.service.DishRecommendation;
-import progressive.delivery.workshop.dish.recommend.service.shadowing.ShadowingDishRecommendation;
+import progressive.delivery.workshop.dish.recommend.service.flagging.FlaggingDishRecommendation;
 
 /**
  * Ajánló-implementáció, mely mindig a felhasználó kedvenc ételéhez hasonló
  * (azzal megegyező kategóriában levő) fogást próbál ajánlani.
- * <p>
- * Elláttuk a Dark annotációval, ezzel jelezve a DI konténer számára, hogy a shadowing
- * során ez fogja a dark traffic-et kapni.
  */
 @ApplicationScoped
-@ShadowingDishRecommendation.Dark
+@FlaggingDishRecommendation.New
 @Slf4j
 public class SimilarDishRecommendation implements DishRecommendation {
     @Inject

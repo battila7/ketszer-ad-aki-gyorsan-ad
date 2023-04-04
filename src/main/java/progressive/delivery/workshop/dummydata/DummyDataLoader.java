@@ -10,6 +10,8 @@ import progressive.delivery.workshop.account.persistence.Account;
 import progressive.delivery.workshop.category.persistence.Category;
 import progressive.delivery.workshop.dish.favorite.service.FavoriteDish;
 import progressive.delivery.workshop.dish.persistence.Dish;
+import progressive.delivery.workshop.dish.recommend.service.flagging.FlaggingDishRecommendation;
+import progressive.delivery.workshop.featureflag.persistence.FeatureFlag;
 import progressive.delivery.workshop.wish.persistence.Wish;
 
 /**
@@ -35,6 +37,9 @@ public class DummyDataLoader {
         Category.deleteAll();
         Dish.deleteAll();
         Wish.deleteAll();
+        FeatureFlag.deleteAll();
+
+        Account.add("admin", "admin", Account.Role.ADMIN);
 
         final var bob = Account.add("bob", "password", Account.Role.CUSTOMER);
 
@@ -53,6 +58,8 @@ public class DummyDataLoader {
         final var wish = Wish.add(bob);
         wish.addDish(kirantottHusRizsavu);
         wish.persist();
+
+        FeatureFlag.add(FlaggingDishRecommendation.FLAG_NAME);
 
         // Sanity check, hogy a tesztadatok helyesen lettek-e feltöltve.
         // Azaz, tényleg létezik-e bob és az ő kedves kis étele.
