@@ -40,10 +40,10 @@ public class Category extends PanacheEntity {
             return true;
         }
 
-        if (isNull(obj) || !(obj instanceof Dish)) {
+        if (isNull(obj) || !(obj instanceof Category)) {
             return false;
         }
 
-        return Objects.equals(getName(), ((Dish) obj).getName());
+        return Objects.equals(getName(), ((Category) obj).getName());
     }
 }
