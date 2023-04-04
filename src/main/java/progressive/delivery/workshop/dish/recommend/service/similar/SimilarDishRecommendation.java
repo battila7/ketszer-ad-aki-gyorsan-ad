@@ -5,16 +5,20 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
-import org.mapstruct.Mapper;
 import progressive.delivery.workshop.dish.favorite.service.FavoriteDish;
 import progressive.delivery.workshop.dish.persistence.Dish;
 import progressive.delivery.workshop.dish.recommend.service.DishRecommendation;
+import progressive.delivery.workshop.dish.recommend.service.shadowing.ShadowingDishRecommendation;
 
 /**
  * Ajánló-implementáció, mely mindig a felhasználó kedvenc ételéhez hasonló
  * (azzal megegyező kategóriában levő) fogást próbál ajánlani.
+ * <p>
+ * Elláttuk a Dark annotációval, ezzel jelezve a DI konténer számára, hogy a shadowing
+ * során ez fogja a dark traffic-et kapni.
  */
 @ApplicationScoped
+@ShadowingDishRecommendation.Dark
 @Slf4j
 public class SimilarDishRecommendation implements DishRecommendation {
     @Inject
@@ -37,7 +41,10 @@ public class SimilarDishRecommendation implements DishRecommendation {
 
         final var favoriteDish = favoriteDishOptional.get();
 
-        return Dish.streamAllInCategory(favoriteDish.getCategories()).findAny().map(mapper::map);
+        return favoriteDish.getCategories().stream()
+                .flatMap(category -> category.getDishes().stream())
+                .findAny()
+                .map(mapper::map);
     }
 
     @org.mapstruct.Mapper

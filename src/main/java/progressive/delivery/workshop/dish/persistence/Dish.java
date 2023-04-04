@@ -93,8 +93,4 @@ public class Dish extends PanacheEntity {
     public static Stream<Dish> streamAllWithName(final Collection<String> names) {
         return stream("name in :names", Parameters.with("names", names));
     }
-
-    public static Stream<Dish> streamAllInCategory(final Collection<Category> categories) {
-        return stream("category in :categories", Parameters.with("categories", categories));
-    }
 }

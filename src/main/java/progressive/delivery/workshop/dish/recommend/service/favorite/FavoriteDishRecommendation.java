@@ -6,12 +6,17 @@ import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 import progressive.delivery.workshop.dish.favorite.service.FavoriteDish;
 import progressive.delivery.workshop.dish.recommend.service.DishRecommendation;
+import progressive.delivery.workshop.dish.recommend.service.shadowing.ShadowingDishRecommendation;
 
 /**
  * Ajánlás-implementáció, mely mindig a felhasználó kedvenc ételét adja
  * vissza.
+ * <p>
+ * Ellátuk a Light annotációval, jelzendő, hogy a shadowing során ez fogja a
+ * valódi, visszaadott értéket meghatározni.
  */
 @ApplicationScoped
+@ShadowingDishRecommendation.Light
 @Slf4j
 public class FavoriteDishRecommendation implements DishRecommendation {
     @Inject
