@@ -1,4 +1,4 @@
-package progressive.delivery.workshop.dish.favorite;
+package progressive.delivery.workshop.dish.favorite.service;
 
 import java.util.Optional;
 

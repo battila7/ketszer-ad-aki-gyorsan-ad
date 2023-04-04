@@ -8,7 +8,7 @@ import javax.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import progressive.delivery.workshop.account.persistence.Account;
 import progressive.delivery.workshop.category.persistence.Category;
-import progressive.delivery.workshop.dish.favorite.FavoriteDish;
+import progressive.delivery.workshop.dish.favorite.service.FavoriteDish;
 import progressive.delivery.workshop.dish.persistence.Dish;
 import progressive.delivery.workshop.wish.persistence.Wish;
 
