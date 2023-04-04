@@ -1,5 +1,7 @@
 quarkus:
   http:
+    auth:
+      basic=true:
     access-log:
       enabled: true
     limits:

@@ -2,32 +2,23 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
-
   <groupId>progressive.delivery</groupId>
   <artifactId>workshop</artifactId>
   <version>1.0.0</version>
-
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <compiler-plugin.version>3.10.1</compiler-plugin.version>
+    <hibernate-types-55.version>2.19.0</hibernate-types-55.version>
+    <lombok.version>1.18.24</lombok.version>
     <maven.compiler.release>17</maven.compiler.release>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
-
-    <skipITs>true</skipITs>
-
+    <palantir-java-format.version>2.26.0</palantir-java-format.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
     <quarkus.platform.version>2.16.5.Final</quarkus.platform.version>
-
-    
-    <hibernate-types-55.version>2.19.0</hibernate-types-55.version>
-    <lombok.version>1.18.24</lombok.version>
-    
-    
-    
-    <palantir-java-format.version>2.26.0</palantir-java-format.version>
-    <compiler-plugin.version>3.10.1</compiler-plugin.version>
+    <skipITs>true</skipITs>
     <spotbugs-plugin.version>4.7.1.1</spotbugs-plugin.version>
     <spotbugs.version>4.7.1</spotbugs.version>
     <spotless.version>2.24.1</spotless.version>
@@ -112,7 +103,11 @@
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-hibernate-validator</artifactId>
     </dependency>
-   </dependencies>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-security-jpa</artifactId>
+    </dependency>
+  </dependencies>
   <build>
     <plugins>
       <plugin>
